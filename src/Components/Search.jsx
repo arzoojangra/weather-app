@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
-import { fetchCityApi } from "../Api/ApiCall";
+import { airPollutionApi, fetchCityApi, forecastApi, weatherApi } from "../Api/ApiCall";
 
 function Search(props) {
   const [search, setSearch] = useState("");
@@ -18,11 +18,14 @@ function Search(props) {
     };
   };
 
-  const handleOnChange = (searchData) => {
+  const handleOnChange = async (searchData) => {
     setSearch(searchData);
-    console.log(searchData);
+    const [lat, long] = searchData.value.split(" ");
+    const weather = await weatherApi(lat, long);
+    const forecast = await forecastApi(lat, long);
+    const airPollution = await airPollutionApi(lat, long);
   };
-  
+
   return (
     <div>
       <AsyncPaginate
