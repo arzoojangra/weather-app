@@ -1,44 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-function CurrentLocation(props) {
-    const [location, setLocation] = useState(null);
-    const [error, setError] = useState(false);
-    const [message, setMessage] = useState("");
+function CurrentLocation({ setSearchLocation }) {
+  const [location, setLocation] = useState(null);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
 
-    const getUserLocation = () => {
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { latitude, longitude } = position.coords;
-                    setLocation({ latitude, longitude });
-                },
-                (error) => {
-                    setError(true);
-                    setMessage("Please allow the site to access your location!!")
-                    console.error('Error getting user location:', error.message);
-                }
-            );
-
-        }else{
-            setError(true);
-            setMessage("Sorry your browser does not support Geolocation services!")
-            console.error('Geolocation is not supported by this browser.');
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({ latitude, longitude });
+          setSearchLocation({ latitude, longitude });
+        },
+        (error) => {
+          setError(true);
+          setMessage("Please allow the site to access your location!!");
+          console.error("Error getting user location:", error.message);
         }
-    };
+      );
+    } else {
+      setError(true);
+      setMessage("Sorry your browser does not support Geolocation services!");
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
 
-    useEffect(()=>{
-        if(!location){
-            getUserLocation();
-        }
-    },[location])
+  useEffect(() => {
+    if (!location) {
+      getUserLocation();
+    }
+  }, [location]);
 
-
-    return (
+  return (
+    <div>
+      {/* {location && (
         <div>
-            {location && <div>{location.latitude} {location.longitude} </div>}
-            {error && <div>{message}</div>}
+          {location.latitude} {location.longitude}{" "}
         </div>
-    );
+      )} */}
+      {error && <div>{message}</div>}
+    </div>
+  );
 }
 
 export default CurrentLocation;

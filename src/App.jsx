@@ -1,17 +1,15 @@
+import { useState } from "react";
 import CurrentLocation from "./Components/CurrentLocation";
-import Search from "./Components/Search";
+import WeatherWidget from "./Components/WeatherWidget";
 
 function App() {
+  const [searchLocation, setSearchLocation] = useState(null);
   return (
     <>
-      <div
-        className="bg-morning-image flex items-center justify-center h-screen bg-no-repeat bg-cover"
-      >
-        
-      <Search/>
-      <CurrentLocation/>
+      <div className="bg-bg-image h-screen bg-no-repeat bg-cover bg-fixed pt-20">
+        <CurrentLocation setSearchLocation={setSearchLocation} />
+        <WeatherWidget searchLocation = {searchLocation} setSearchLocation = {setSearchLocation} />
       </div>
-      {/* <div>hello</div> */}
     </>
   );
 }
