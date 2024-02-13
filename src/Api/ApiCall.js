@@ -60,7 +60,7 @@ export const forecastApi = async (lat, long) => {
 
   try {
     let apiResponse = await axios(options);
-    // console.log("forecast response-------------",apiResponse);
+    console.log("forecast response-------------",apiResponse);
     response.status = true;
     response.result = apiResponse.data.data;
     return response;

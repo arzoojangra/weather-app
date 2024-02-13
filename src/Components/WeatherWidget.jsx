@@ -61,37 +61,50 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
   const month = months[date.getMonth()]; // Month is 0-indexed, so we add 1
   const currDate = date.getDate();
   const am_pm = date.getHours() > 12 ? "PM" : "AM";
-  const hours = date.getHours() > 12 ? date.getHours()-12 : date.getHours() ;
+  const hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
   const day = days[date.getDay()];
 
+  if(!weather){
+    return(<div>Loading...</div>)
+  }
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 size-10/12 m-auto rounded-3xl overflow-hidden">
-      <div className="bg-morning-image bg-no-repeat bg-cover size-full p-5">
+      <div className="bg-color2 size-full p-5">
         <div className="items-center mx-auto mt-5">
-          <Search setSearchLocation={setSearchLocation}/>
+          <Search setSearchLocation={setSearchLocation} />
         </div>
         {weather && (
-          <div className="flex justify-end text-3xl pt-3 font-bold sm:h-2/3 h-1/2">
-            {weather.name}, {weather.sys.country}
+          <div className="text-end pt-3 sm:h-3/5 h-2/3">
+            <div className="sm:text-5xl text-4xl font-bold">
+              {weather.main.temp}
+              °C
+            </div>
+            <div className="sm:text-3xl text-2xl">
+              {weather.name}, {weather.sys.country}
+            </div>
           </div>
         )}
         {weather && (
-          <div className="flex font-bold text-white w-full">
-            <div className="sm:w-2/3 w-1/3">
-            <div className="text-xl sm:w-full w-fit">{day}, {currDate} {month} {year}</div>
-            <div className="text-xl sm:w-full w-fit">{hours}:{minutes}:{seconds} {am_pm}</div>
-
+          <div className="grid grid-cols-3 place-content-between">
+            <div className="sm:text-start col-span-2">
+              {day}, {currDate} {month} {year}
+              <br />
             </div>
-            <div className="flex justify-end text-6xl font-bold w-1/3">
-              {weather.main.temp}
-              °C
+            <div className="text-end">
+              {hours}:{minutes}:{seconds} {am_pm}
             </div>
           </div>
         )}
       </div>
-      <div className="bg-black bg-opacity-60 h-full w-full"> Image 2</div>
+      <div className="bg-color2 h-full w-full">
+        {weather.main.temp_min}
+        <br/>
+        {weather.main.feels_like}
+        <br/>
+        {weather.main.temp_max}
+      </div>
     </div>
   );
 }

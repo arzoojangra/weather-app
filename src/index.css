@@ -5,7 +5,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Diphylleia", serif;
+  font-family: "Quicksand", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 15px;
@@ -16,4 +16,16 @@ body {
   font-family: "Protest Riot", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.bg-color {
+  background: rgb(205, 250, 219);
+}
+
+.bg-color2 {
+  background: rgb(255, 207, 150);
+}
+
+.dark-color{
+  color: rgb(255, 128, 128);
 }
