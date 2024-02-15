@@ -33,12 +33,7 @@ function CurrentLocation({ setSearchLocation }) {
   }, [location]);
 
   return (
-    <div>
-      {/* {location && (
-        <div>
-          {location.latitude} {location.longitude}{" "}
-        </div>
-      )} */}
+    <div className="">
       {error && <div>{message}</div>}
     </div>
   );

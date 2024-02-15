@@ -8,7 +8,7 @@ import {
 } from "../Api/ApiCall";
 import Select from "react-select";
 
-function Search({setSearchLocation}) {
+function Search({setSearchLocation, setTime}) {
   const [search, setSearch] = useState("");
 
   const loadOptions = async (inputValue) => {
@@ -28,8 +28,8 @@ function Search({setSearchLocation}) {
   const customStyles = {
     control: (provided) => ({
       ...provided,
-      backgroundColor: "rgba(209, 213, 219, 0.5)",
-      borderColor: "grey",
+      backgroundColor: "rgb(102, 178, 255, 0.5)",
+      borderColor: "rgb(51, 153, 255)",
       borderRadius: "70px",
       color: "white",
     }),
@@ -46,10 +46,10 @@ function Search({setSearchLocation}) {
     option: (provided, state) => ({
       ...provided,
       color: state.isSelected ? "white" : "black",
-      backgroundColor: state.isSelected ? "lightgrey" : "white", 
+      backgroundColor: state.isSelected ? "rgb(102, 178, 255, 0.5)" : "white", 
       borderRadius: "12px",
       ":hover": {
-        backgroundColor: state.isSelected ? "white" : "lightgrey",
+        backgroundColor: state.isSelected ? "white" : "rgb(102, 178, 255, 0.5)",
         borderRadius: "12px",
       },
     }),

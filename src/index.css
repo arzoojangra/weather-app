@@ -11,6 +11,12 @@ body {
   font-size: 15px;
 }
 
+.bg-image {
+  background-image: url("../public/images/background-image.jpg");
+  display: flex;
+  min-height: 100vh;
+}
+
 
 .protest-riot-regular {
   font-family: "Protest Riot", sans-serif;
