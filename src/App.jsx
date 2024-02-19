@@ -5,30 +5,15 @@ import WeatherWidget from "./Components/WeatherWidget";
 function App() {
   const [searchLocation, setSearchLocation] = useState(null);
   return (
-    <div className="bg-image h-screen bg-no-repeat bg-cover bg-fixed">
-      <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr]">
-        <div className="sm:min-h-full min-h-36">
+    <div className="bg-image bg-cover bg-fixed h-screen w-full">
+        <div className="flex justify-center items-center sm:h-4/5 h-2/3 w-2/3 sm:w-1/3 m-auto">
           <CurrentLocation setSearchLocation={setSearchLocation} />
-        </div>
-        <div className="min-h-[67%] flex items-center p-5">
           <WeatherWidget
             searchLocation={searchLocation}
             setSearchLocation={setSearchLocation}
           />
-        </div>
       </div>
     </div>
-    // <div className="grid grid-cols-1 sm:grid-cols-3">
-    //   {/* First element spanning starting two columns on screens bigger than small size */}
-    //   <div className="col-span-2 sm:col-span-2 bg-blue-200 p-4">
-    //     First Element
-    //   </div>
-
-    //   {/* Second element spanning last two rows on smaller screens */}
-    //   <div className="sm:col-span-1 row-span-2 bg-green-200 p-4">
-    //     Second Element
-    //   </div>
-    // </div>
   );
 }
 
