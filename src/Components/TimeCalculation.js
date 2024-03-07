@@ -1,15 +1,7 @@
-export default function calculateTime(unixtime) {
-    console.log("unixtime",unixtime);
-    if(unixtime){
-        var date = unixtime;
-    }else{
-        var date = new Date();
-    }
+const dateAndTime = {};
 
-  // Get the various components of the date
-  const year = date.getFullYear();
-  const month = months[date.getMonth()]; // Month is 0-indexed, so we add 1
-  const currDate = date.getDate();
+dateAndTime.calculateTime= (unixtime) => {
+  const date = new Date(unixtime * 1000);
   const am_pm = date.getHours() > 12 ? "PM" : "AM";
   let hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
   hours = hours < 10 ? `0${hours}` : hours;
@@ -17,12 +9,8 @@ export default function calculateTime(unixtime) {
     date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
   const seconds =
     date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds();
-  const day = days[date.getDay()];
-
-  const dateToday = `${day}, ${currDate} ${month} ${year}`;
-  const timeNow = `${hours}:${minutes}:${seconds} ${am_pm}`;
-
-  return { dateToday, timeNow };
+  const time = `${hours}:${minutes} ${am_pm}`;
+  return time;
 }
 
 let months = [
@@ -39,6 +27,7 @@ let months = [
   "November",
   "December",
 ];
+
 let days = [
   "Sunday",
   "Monday",
@@ -48,3 +37,15 @@ let days = [
   "Friday",
   "Saturday",
 ];
+
+dateAndTime.calculateDate = (unixtime) => {
+  const date = new Date(unixtime * 1000);
+  const year = date.getFullYear();
+  const month = months[date.getMonth()]; 
+  const currDate = date.getDate();
+  const day = days[date.getDay()];
+  const dateToday = `${day}, ${currDate} ${month} ${year}`;
+  return dateToday;
+}
+
+module.exports = dateAndTime;

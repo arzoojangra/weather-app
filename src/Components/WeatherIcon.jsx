@@ -1,6 +1,7 @@
 import React from 'react';
 
 function WeatherIcon({weather, time}) {
+  time = new Date(time);
     let image = {
         Thunderstorm: "thunderstorm.png",
         Drizzle: "light_rain.png",
@@ -12,7 +13,7 @@ function WeatherIcon({weather, time}) {
         Clear_Night: "clear_night.png",
         Clouds: "clouds.png",
       }
-    let am_pm = time.getHours > 19 ? "night" : "day";
+    let am_pm = time.getHours() > 19 ? "night" : "day";
     var img_url;
     if(weather == "Clear"){
       if(am_pm == "day"){

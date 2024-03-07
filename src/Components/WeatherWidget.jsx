@@ -3,11 +3,13 @@ import Search from "./Search";
 import { forecastApi, weatherApi } from "../Api/ApiCall";
 import WeatherIcon from "./WeatherIcon";
 import calculateTime from "./TimeCalculation";
+import Forecast from "./Forecast";
 
 function WeatherWidget({ searchLocation, setSearchLocation }) {
   //   console.log(searchLocation);
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
+  const [showForecast, setShowForecast] = useState(true);
   const [time, setTime] = useState();
 
   const fetchWeather = async (searchLocation) => {
@@ -16,6 +18,7 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
     setTime(weatherResponse.result.dt * 1000);
     const forecastResponse = await forecastApi(searchLocation.latitude,searchLocation.longitude);
     setForecast(forecastResponse.result.list.slice(0, 8));
+    console.log(forecastResponse.result.list)
   };
 
   useEffect(() => {
@@ -23,15 +26,20 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
       fetchWeather(searchLocation);
     }
   }, [searchLocation]);
-
   
 
   if (!weather) {
     return <div>Loading...</div>;
+  } else if (showForecast) {
+    return (
+      <div>
+        <Forecast weather={weather} forecast={forecast} iconTime={time}/>
+      </div>
+    );
   }
   return (
-    <>
-      <div className="m-auto rounded-2xl bg-orange-500 bg-opacity-20 overflow-hidden flex flex-col backdrop-blur-sm p-2">
+    <div>
+      <div className="m-auto rounded-2xl bg-orange-500 bg-opacity-20 overflow-hidden flex flex-col backdrop-blur-sm p-2 h-4/5 w-2/3">
         <div className="p-1 mb-2">
           <Search setSearchLocation={setSearchLocation} />
         </div>
@@ -53,9 +61,9 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
 
         <div className="m-auto flex flex-row text-center items-center w-full text-xl my-2">
           <div className="flex flex-col items-center w-2/5 sm:w-1/2">
-              <p className="text-sm font-bold">Humidity</p>
+            <p className="text-sm font-bold">Humidity</p>
             <div className="text-center flex flex-row items-center mx-auto">
-            <img src="/images/humidity.png" className="w-7 h-7" />
+              <img src="/images/humidity.png" className="w-7 h-7" />
               <div>{weather.main.humidity}%</div>
             </div>
           </div>
@@ -68,8 +76,13 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
             </div>
           </div>
         </div>
+        <button className="text-center flex items-center m-auto">
+          <div className="py-1 px-2 rounded-2xl text-orange-500 bg-orange-400 bg-opacity-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
+            Show forecast...
+          </div>
+        </button>
       </div>
-    </>
+    </div>
   );
 }
 

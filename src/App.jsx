@@ -6,7 +6,7 @@ function App() {
   const [searchLocation, setSearchLocation] = useState(null);
   return (
     <div className="bg-image bg-cover bg-fixed h-screen w-full">
-        <div className="flex justify-center items-center sm:h-4/5 h-2/3 w-2/3 sm:w-1/3 m-auto">
+        <div className="flex justify-center items-center m-auto w-full">
           <CurrentLocation setSearchLocation={setSearchLocation} />
           <WeatherWidget
             searchLocation={searchLocation}
