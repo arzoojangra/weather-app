@@ -38,7 +38,7 @@ export const weatherApi = async (lat, long) => {
 
   try {
     let apiResponse = await axios(options);
-    console.log("weather response-------------",apiResponse);
+    // console.log("weather response-------------",apiResponse);
     response.status = true;
     response.result = apiResponse.data;
     return response;

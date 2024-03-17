@@ -14,7 +14,6 @@ body {
 .bg-image {
   background-image: url("../public/images/background-image.jpg");
   display: flex;
-  min-height: 100vh;
 }
 
 
@@ -34,4 +33,12 @@ body {
 
 .dark-color{
   color: rgb(255, 128, 128);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* For Firefox */
 }

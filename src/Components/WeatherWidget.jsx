@@ -4,21 +4,26 @@ import { forecastApi, weatherApi } from "../Api/ApiCall";
 import WeatherIcon from "./WeatherIcon";
 import calculateTime from "./TimeCalculation";
 import Forecast from "./Forecast";
+import dateAndTime from "./TimeCalculation";
 
 function WeatherWidget({ searchLocation, setSearchLocation }) {
-  //   console.log(searchLocation);
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
-  const [showForecast, setShowForecast] = useState(true);
+  const [showForecast, setShowForecast] = useState(false);
   const [time, setTime] = useState();
+  const [timezone, setTimezone] = useState();
 
   const fetchWeather = async (searchLocation) => {
     const weatherResponse = await weatherApi(searchLocation.latitude,searchLocation.longitude);
     setWeather(weatherResponse.result);
-    setTime(weatherResponse.result.dt * 1000);
+    setTimezone(weatherResponse.result.timezone);
+    setTime(weatherResponse.result.dt);
     const forecastResponse = await forecastApi(searchLocation.latitude,searchLocation.longitude);
-    setForecast(forecastResponse.result.list.slice(0, 8));
-    console.log(forecastResponse.result.list)
+    setForecast(forecastResponse.result.list);
+  };
+
+  const handleClick = () => {
+    setShowForecast(true);
   };
 
   useEffect(() => {
@@ -26,20 +31,19 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
       fetchWeather(searchLocation);
     }
   }, [searchLocation]);
-  
 
   if (!weather) {
     return <div>Loading...</div>;
   } else if (showForecast) {
     return (
       <div>
-        <Forecast weather={weather} forecast={forecast} iconTime={time}/>
+        <Forecast weather={weather} forecast={forecast} setShowForecast={setShowForecast}/>
       </div>
     );
   }
   return (
     <div>
-      <div className="m-auto rounded-2xl bg-orange-500 bg-opacity-20 overflow-hidden flex flex-col backdrop-blur-sm p-2 h-4/5 w-2/3">
+      <div className="m-auto rounded-2xl bg-pink-400 bg-opacity-20 overflow-hidden flex flex-col backdrop-blur-sm p-2 h-3/5 w-2/3">
         <div className="p-1 mb-2">
           <Search setSearchLocation={setSearchLocation} />
         </div>
@@ -48,14 +52,21 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
           {weather.name}, {weather.sys.country}
         </div>
 
-        <div className="flex sm:flex-col flex-row">
-          <div className="mx-auto items-center sm:w-2/3 w-1/2 py-3">
-            <WeatherIcon weather={weather.weather[0].main} time={time} />
+        <div className="flex sm:flex-col flex-row h-2/5">
+          <div className="mx-auto items-center sm:w-2/3 w-1/2 h-1/5">
+            <div className="size-3/4 items-center m-auto">
+              <WeatherIcon weather={weather.weather[0].main} time={time} timezone={timezone}/>
+            </div>
           </div>
 
-          <div className="text-4xl sm:text-5xl text-center m-auto sm:w-full w-1/2 sm:my-2">
+          <div className="text-4xl sm:text-5xl text-center m-auto sm:w-full w-1/2 h-2/5">
             {Math.trunc(weather.main.temp)}
             °C
+          </div>
+          <div className="text-xl sm:text-xl text-center m-auto sm:w-full w-1/2 h-2/5">
+            {dateAndTime.calculateTime(time, timezone)}
+            <br />
+            {dateAndTime.calculateDate(time)}
           </div>
         </div>
 
@@ -76,8 +87,11 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
             </div>
           </div>
         </div>
-        <button className="text-center flex items-center m-auto">
-          <div className="py-1 px-2 rounded-2xl text-orange-500 bg-orange-400 bg-opacity-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
+        <button
+          className="text-center flex items-center m-auto"
+          onClick={handleClick}
+        >
+          <div className="py-1 px-2 rounded-2xl text-pink-500 bg-pink-400 bg-opacity-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-100">
             Show forecast...
           </div>
         </button>
@@ -87,3 +101,10 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
 }
 
 export default WeatherWidget;
+
+
+/*  save unix time in one variable
+and time zone in another variable 
+use these two to calculate time in calculate time function
+convert time in milliseconds in the function itself
+*/

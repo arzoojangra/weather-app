@@ -28,8 +28,8 @@ function Search({setSearchLocation, setTime}) {
   const customStyles = {
     control: (provided) => ({
       ...provided,
-      backgroundColor: "rgb(249, 115, 22, 0.5)",
-      borderColor: "rgb(249, 115, 22)",
+      backgroundColor: "rgb(244, 114, 182, 0.5)",
+      borderColor: "rgb(244, 114, 182)",
       borderRadius: "70px",
       color: "white",
     }),
@@ -46,10 +46,10 @@ function Search({setSearchLocation, setTime}) {
     option: (provided, state) => ({
       ...provided,
       color: state.isSelected ? "white" : "black",
-      backgroundColor: state.isSelected ? "rgb(249, 115, 22, 0.3)" : "white", 
+      backgroundColor: state.isSelected ? "rgb(244, 114, 182, 0.3)" : "white", 
       borderRadius: "12px",
       ":hover": {
-        backgroundColor: state.isSelected ? "white" : "rgb(249, 115, 22, 0.3)",
+        backgroundColor: state.isSelected ? "white" : "rgb(244, 114, 182, 0.3)",
         borderRadius: "12px",
       },
     }),
