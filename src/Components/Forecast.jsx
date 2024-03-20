@@ -61,11 +61,11 @@ function Forecast({ weather, forecast, setShowForecast}) {
           </div>
 
           <div className="flex flex-col w-2/3 m-auto items-center">
-            <div className="sm:text-3xl text-lg text-center w-full p-1">
+            <div className="sm:text-4xl text-xl text-center w-full p-1 font-semibold">
               {weather.name}, {weather.sys.country}
             </div>
 
-            <div className="sm:text-2xl text-lg text-center w-full p-1">
+            <div className="sm:text-3xl text-lg text-center w-full p-1">
               {weather.main.temp}°C
             </div>
           </div>
@@ -182,15 +182,15 @@ function Forecast({ weather, forecast, setShowForecast}) {
                 <div className="sm:text-xl text-xl w-full my-5 font-medium">
                   {dateAndTime.calculateDate(dayData[0].dt)}
                 </div>
-                <div className="flex flex-wrap justify-start w-full gap-4 items-center text-center">
+                <div className="flex flex-wrap sm:justify-start justify-center w-full gap-4 items-center text-center">
                   {dayData &&
                     dayData.length &&
                     dayData.map((item, itemIndex) => (
                       <div
-                        className="flex flex-col text-center md:w-1/5 sm:w-1/3 w-1/4"
+                        className="flex flex-col text-center md:w-1/5 sm:w-1/3 w-1/4 bg-pink-400 bg-opacity-30 rounded-3xl p-2"
                         key={itemIndex}
                       >
-                        <div className="h-2/5 text-pink-600">
+                        <div className="h-2/5 text-pink-700 text-lg font-semibold">
                           {dateAndTime.calculateTimeWithoutTimezone(item.dt)}
                         </div>
                         <div className="h-1/5">
@@ -199,8 +199,8 @@ function Forecast({ weather, forecast, setShowForecast}) {
                             time={item.dt}
                           />
                         </div>
-                        <div className="text-center h-2/5 text-pink-600">
-                          {item.main.temp}°C
+                        <div className="text-center h-2/5 text-pink-700 text-lg">
+                          {Math.trunc(item.main.temp)}°C
                         </div>
                       </div>
                     ))}

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Search from "./Search";
 import { forecastApi, weatherApi } from "../Api/ApiCall";
 import WeatherIcon from "./WeatherIcon";
-import calculateTime from "./TimeCalculation";
 import Forecast from "./Forecast";
 import dateAndTime from "./TimeCalculation";
+import { WeatherWidgetSkeleton } from "./Loaders";
 
 function WeatherWidget({ searchLocation, setSearchLocation }) {
   const [weather, setWeather] = useState(null);
@@ -33,7 +33,11 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
   }, [searchLocation]);
 
   if (!weather) {
-    return <div>Loading...</div>;
+    return(
+      // <div className="">
+        <WeatherWidgetSkeleton/>
+      // </div>
+    )
   } else if (showForecast) {
     return (
       <div>
@@ -41,29 +45,29 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
       </div>
     );
   }
-  return (
+  else  return (
     <div>
       <div className="m-auto rounded-2xl bg-pink-400 bg-opacity-20 overflow-hidden flex flex-col backdrop-blur-sm p-2 h-3/5 w-2/3">
         <div className="p-1 mb-2">
           <Search setSearchLocation={setSearchLocation} />
         </div>
 
-        <div className="text-2xl text-center">
+        <div className="text-2xl text-center font-semibold">
           {weather.name}, {weather.sys.country}
         </div>
 
-        <div className="flex sm:flex-col flex-row h-2/5">
+        <div className="flex flex-col h-2/5">
           <div className="mx-auto items-center sm:w-2/3 w-1/2 h-1/5">
             <div className="size-3/4 items-center m-auto">
               <WeatherIcon weather={weather.weather[0].main} time={time} timezone={timezone}/>
             </div>
           </div>
 
-          <div className="text-4xl sm:text-5xl text-center m-auto sm:w-full w-1/2 h-2/5">
+          <div className="text-4xl sm:text-5xl text-center m-auto w-full h-2/5">
             {Math.trunc(weather.main.temp)}
             °C
           </div>
-          <div className="text-xl sm:text-xl text-center m-auto sm:w-full w-1/2 h-2/5">
+          <div className="text-xl sm:text-xl text-center m-auto w-full h-2/5">
             {dateAndTime.calculateTime(time, timezone)}
             <br />
             {dateAndTime.calculateDate(time)}
