@@ -21,7 +21,7 @@ c) Shows the basic details of the weather(including sunrise and sunset timings, 
 ![WhatsApp Image 2024-03-25 at 7 37 09 PM](https://github.com/arzoojangra/weather-app/assets/96476616/ec43ba27-7039-4588-b9c3-79304f67d175)
 <br/>
 <br/>
-![WhatsApp Image 2024-03-25 at 7 37 09 PM](https://github.com/arzoojangra/weather-app/assets/96476616/8067f8c7-187b-4ab8-853d-093a3c00d29c)
+![WhatsApp Image 2024-03-25 at 7 37 38 PM](https://github.com/arzoojangra/weather-app/assets/96476616/2ad4b2ef-cc46-40b2-a943-d0628ae816ad)
 <br/>
 <br/>
 ![WhatsApp Image 2024-03-25 at 7 37 55 PM](https://github.com/arzoojangra/weather-app/assets/96476616/98e234f4-2bac-4e2f-9309-27c564e22151)
