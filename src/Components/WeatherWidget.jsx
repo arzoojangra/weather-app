@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
-import { forecastApi, weatherApi } from "../Api/ApiCall";
+import { airPollutionApi, forecastApi, mapsApi, weatherApi } from "../Api/ApiCall";
 import WeatherIcon from "./WeatherIcon";
 import Forecast from "./Forecast";
 import dateAndTime from "./TimeCalculation";
@@ -9,6 +9,7 @@ import { WeatherWidgetSkeleton } from "./Loaders";
 function WeatherWidget({ searchLocation, setSearchLocation }) {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
+  const [airPollution, setAirPollution] = useState(null);
   const [showForecast, setShowForecast] = useState(false);
   const [time, setTime] = useState();
   const [timezone, setTimezone] = useState();
@@ -20,6 +21,8 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
     setTime(weatherResponse.result.dt);
     const forecastResponse = await forecastApi(searchLocation.latitude,searchLocation.longitude);
     setForecast(forecastResponse.result.list);
+    const airPollutionResponse = await airPollutionApi(searchLocation.latitude, searchLocation.longitude);
+    setAirPollution(airPollutionResponse.result);  
   };
 
   const handleClick = () => {
@@ -32,7 +35,7 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
     }
   }, [searchLocation]);
 
-  if (!weather) {
+  if (!weather || !forecast || !airPollution) {
     return(
       // <div className="">
         <WeatherWidgetSkeleton/>
@@ -41,7 +44,7 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
   } else if (showForecast) {
     return (
       <div>
-        <Forecast weather={weather} forecast={forecast} setShowForecast={setShowForecast}/>
+        <Forecast weather={weather} forecast={forecast} setShowForecast={setShowForecast} airPollution={airPollution}/>
       </div>
     );
   }
@@ -84,19 +87,19 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
           </div>
 
           <div className="flex flex-col items-center w-3/5 sm:w-1/2">
-            <p className="text-sm font-bold">Wind Speed</p>
+            <p className="text-sm font-bold">AQI</p>
             <div className="text-center flex flex-row items-center mx-auto">
-              <img src="/images/wind_speed.png" className="w-7 h-7 mr-1" />
-              <div>{weather.wind.speed}m/s</div>
+              <img src="/images/aqi.png" className="w-7 h-7 mr-1" />
+              <div>{airPollution.main.aqi}</div>
             </div>
           </div>
         </div>
         <button
-          className="text-center flex items-center m-auto"
+          className="text-center flex items-center m-auto font-semibold"
           onClick={handleClick}
         >
-          <div className="py-1 px-2 rounded-2xl text-pink-500 bg-pink-400 bg-opacity-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-100">
-            Show forecast...
+          <div className="py-1 px-2 rounded-2xl text-pink-500 bg-pink-500 bg-opacity-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-100">
+            Show forecast
           </div>
         </button>
       </div>
@@ -105,10 +108,3 @@ function WeatherWidget({ searchLocation, setSearchLocation }) {
 }
 
 export default WeatherWidget;
-
-
-/*  save unix time in one variable
-and time zone in another variable 
-use these two to calculate time in calculate time function
-convert time in milliseconds in the function itself
-*/

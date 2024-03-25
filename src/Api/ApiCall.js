@@ -38,7 +38,6 @@ export const weatherApi = async (lat, long) => {
 
   try {
     let apiResponse = await axios(options);
-    // console.log("weather response-------------",apiResponse);
     response.status = true;
     response.result = apiResponse.data;
     return response;
@@ -60,7 +59,6 @@ export const forecastApi = async (lat, long) => {
 
   try {
     let apiResponse = await axios(options);
-    // console.log("forecast response-------------",apiResponse);
     response.status = true;
     response.result = apiResponse.data;
     return response;
@@ -82,9 +80,30 @@ export const airPollutionApi = async (lat, long) => {
 
   try {
     let apiResponse = await axios(options);
-    // console.log("air pollution response-------------",apiResponse);
+    let aqi = "";
+    switch (apiResponse.data.list[0].main.aqi) {
+      case 1:
+        aqi = "Good";
+        break;
+      case 2:
+        aqi = "Fair"; 
+        break;
+      case 3:
+        aqi = "Moderate"; 
+        break;
+      case 4:
+        aqi = "Poor"; 
+        break;
+      case 5:
+        aqi = "Very Poor"; 
+        break;
+      default:
+        aqi = "N/A"; 
+        break;
+    }
     response.status = true;
-    response.result = apiResponse.data.data;
+    response.result = apiResponse.data.list[0];
+    response.result.main.aqi = aqi;
     return response;
   } catch (error) {
     console.error(error);

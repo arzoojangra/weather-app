@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
-import {
-  airPollutionApi,
-  fetchCityApi,
-  forecastApi,
-  weatherApi,
-} from "../Api/ApiCall";
+import { fetchCityApi } from "../Api/ApiCall";
 import Select from "react-select";
 
-function Search({setSearchLocation, setTime}) {
+function Search({ setSearchLocation }) {
   const [search, setSearch] = useState("");
 
   const loadOptions = async (inputValue) => {
@@ -62,10 +57,7 @@ function Search({setSearchLocation, setTime}) {
   const handleOnChange = async (searchData) => {
     setSearch(searchData);
     const [lat, long] = searchData.value.split(" ");
-    setSearchLocation({latitude: lat, longitude:long});
-    const weather = await weatherApi(lat, long);
-    const forecast = await forecastApi(lat, long);
-    const airPollution = await airPollutionApi(lat, long);
+    setSearchLocation({ latitude: lat, longitude: long });
     setSearch("");
   };
 

@@ -33,7 +33,7 @@ function CurrentLocation({ setSearchLocation }) {
   }, [location]);
 
   return (
-    <div className="">
+    <div className="sm:text-xl text-lg font-semibold text-center sm:font-bold bg-pink-400 p-5 bg-opacity-30 backdrop-blur-md rounded-xl w-2/3 sm:w-fit">
       {error && <div>{message}</div>}
     </div>
   );
