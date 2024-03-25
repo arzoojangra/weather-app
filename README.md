@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# weather-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a weather-app which shows the weather at your current location primarily. Other features of the app are- <br/>
+a) Search the weather of a particular place. <br/>
+b) Get 5 days forecast of the place. <br/>
+c) Shows the basic details of the weather(including sunrise and sunset timings, pm2.5 and pm10 of that place, wind speed, humidity and other details). <br/>
 
-## Available Scripts
+<br/>
+<b>Screenshots are provided below:</b>
+<br/>
 
-In the project directory, you can run:
+<b>Home Page:</b>
+<br/>
+![WhatsApp Image 2024-03-25 at 7 36 47 PM](https://github.com/arzoojangra/weather-app/assets/96476616/f59e9ce5-9563-4f5a-88cc-07b6f3a2e298)
+<br/>
+<br/>
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<b>5 day Forecast:</b>
+<br/>
+![WhatsApp Image 2024-03-25 at 7 37 09 PM](https://github.com/arzoojangra/weather-app/assets/96476616/ec43ba27-7039-4588-b9c3-79304f67d175)
+<br/>
+<br/>
+![WhatsApp Image 2024-03-25 at 7 37 38 PM](https://github.com/arzoojangra/weather-app/assets/96476616/2ad4b2ef-cc46-40b2-a943-d0628ae816ad)
+<br/>
+<br/>
+![WhatsApp Image 2024-03-25 at 7 37 55 PM](https://github.com/arzoojangra/weather-app/assets/96476616/98e234f4-2bac-4e2f-9309-27c564e22151)
+<br/>
+<br/>
+![WhatsApp Image 2024-03-25 at 7 38 23 PM](https://github.com/arzoojangra/weather-app/assets/96476616/f3b7d412-e218-4542-be50-827c0bf4116b)
+<br/>
+<br/>
+![WhatsApp Image 2024-03-25 at 7 38 43 PM](https://github.com/arzoojangra/weather-app/assets/96476616/3cf0bc5e-6101-4112-bc4c-92eda1f4a26a)
+<br/>
+<br/>
+![WhatsApp Image 2024-03-25 at 7 39 00 PM](https://github.com/arzoojangra/weather-app/assets/96476616/a0982d4d-9cb0-4974-b817-024425da48f8)
+<br/>
+<br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<b>You can see the search functionality in the exampleSearch folder.</b>
