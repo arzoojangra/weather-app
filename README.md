@@ -34,3 +34,7 @@ c) Shows the basic details of the weather(including sunrise and sunset timings, 
 <br/>
 <br/>
 ![WhatsApp Image 2024-03-25 at 7 39 00 PM](https://github.com/arzoojangra/weather-app/assets/96476616/a0982d4d-9cb0-4974-b817-024425da48f8)
+<br/>
+<br/>
+
+<b>You can see the search functionality in the exampleSearch folder.</b>
